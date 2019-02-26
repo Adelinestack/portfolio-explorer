@@ -3,6 +3,7 @@ const app = express();
 const fs = require('fs');
 
 app.use('/', express.static('../client/build/'));
+app.use('/images', express.static('./img'));
 
 const contentByPath = elementPath => {
   return fs.readdirSync(`./img${elementPath}`, { withFileTypes: true });
@@ -14,7 +15,9 @@ app.get('/images', (req, res) => {
   const content = readElement.map(element => ({
     name: element.name,
     isDir: element.isDirectory(),
+    elementPath: `/images${elementPath}${element.name}`,
   }));
+  console.log(content);
   res.send(content);
 });
 
