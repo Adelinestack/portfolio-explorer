@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Content from './Content';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1>Portfolio explorer</h1>
-        </header>
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <header className="App-header">
+            <h1>Portfolio Explorer</h1>
+          </header>
+          <main>
+            <Switch>
+              <Route path="/" render={props => <Content {...props} />} />
+            </Switch>
+          </main>
+        </div>
+      </BrowserRouter>
     );
   }
 }
