@@ -40,12 +40,13 @@ export default class Content extends PureComponent {
 
   render() {
     const { elementsList } = this.state;
+    console.log(elementsList);
     const { pathname } = this.props.location;
     const displayElements = elementsList.map(element => {
       if (element.isDir === true) {
         return (
           <Element
-            path={pathname}
+            path={element.elementPath}
             name={`${element.name}/`}
             type={'Folder'}
             key={`${element.name}${Date.now()}`}
@@ -56,7 +57,7 @@ export default class Content extends PureComponent {
       } else
         return (
           <Element
-            path={pathname}
+            path={element.elementPath}
             name={element.name}
             type={'Image'}
             key={`${element.name}${Date.now()}`}
