@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Content from './Content';
 
 class App extends Component {
@@ -11,9 +11,7 @@ class App extends Component {
             <h1>Portfolio Explorer</h1>
           </header>
           <main>
-            <Switch>
-              <Route path="/" render={props => <Content {...props} />} />
-            </Switch>
+            <Route path="/" component={Content} />
           </main>
         </div>
       </BrowserRouter>

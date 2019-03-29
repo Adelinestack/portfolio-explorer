@@ -1,75 +1,65 @@
 import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
 import Element from './Element';
-import axios from 'axios';
-
-export const getElementFromServer = async elementPath =>
-  await axios.get(`/images`, {
-    params: {
-      elementPath,
-    },
-  });
-export const getElement = async elementPath => {
-  const content = await getElementFromServer(elementPath);
-  return content;
-};
+import { getElement } from '../services/elements';
 
 export default class Content extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      elementsList: [],
+      allImages: [],
+      folders: [],
     };
   }
 
   componentDidMount() {
-    this.fetchElement(this.props.location.pathname);
+    const { pathname } = this.props.location;
+    this.fetchElement(pathname);
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.location.pathname !== prevProps.location.pathname) {
-      this.fetchElement(this.props.location.pathname);
+  componentDidUpdate({ location: { pathname: prevPathname } }) {
+    const { pathname } = this.props.location;
+    if (pathname !== prevPathname) {
+      this.fetchElement(pathname);
     }
   }
 
   async fetchElement(elementPath) {
-    const { data: elementsList } = await getElement(elementPath);
+    const {
+      data: { folders, allImages },
+    } = await getElement(elementPath);
     this.setState({
-      elementsList,
+      allImages,
+      folders,
     });
   }
 
   render() {
-    const { elementsList } = this.state;
-    console.log(elementsList);
+    const { allImages, folders } = this.state;
     const { pathname } = this.props.location;
-    const displayElements = elementsList.map(element => {
-      if (element.isDir === true) {
-        return (
-          <Element
-            path={element.elementPath}
-            name={`${element.name}/`}
-            type={'Folder'}
-            key={`${element.name}${Date.now()}`}
-          />
-        );
-      } else if (element.content) {
-        return <div>{element.content}</div>;
-      } else
-        return (
-          <Element
-            path={element.elementPath}
-            name={element.name}
-            type={'Image'}
-            key={`${element.name}${Date.now()}`}
-          />
-        );
-    });
+    const imagesToDisplay = allImages.map(({ path, name }) => (
+      <Element path={path} name={name} key={`${name}${Date.now()}`} />
+    ));
+    const foldersList = folders.map(({ path, name }) => (
+      <p>
+        <Link key={path} to={path}>
+          {name}
+        </Link>
+      </p>
+    ));
+
     return (
       <div>
         <p>
           You are in : <span>{pathname}</span>
         </p>
-        <div>{displayElements}</div>
+        <nav>
+          <p>
+            <Link to="/">home</Link>
+          </p>
+          {foldersList}
+        </nav>
+        <div>{imagesToDisplay}</div>
       </div>
     );
   }
