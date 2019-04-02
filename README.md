@@ -1,6 +1,23 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+---
+
+## Project description
+
+---
+
+This project is a portfolio explorer.
+It goes through the folders tree and displays all the images.
+
+### `Technologies used`
+
+ReactJS, ReactRouter, styled-components, NodeJS, Express Server
+
+---
+
 ## Available Scripts
+
+---
 
 In the project directory, you can run:
 
