@@ -1,7 +1,13 @@
 import React, { PureComponent } from 'react';
 import Element from './Element';
 import { getElement } from '../services/elements';
-import { Nav, NavLink, ImgBlock, Path, Images } from '../stylized/contentStyle';
+import {
+  Nav,
+  StyledNavLink,
+  ImgBlock,
+  Path,
+  Images,
+} from '../stylized/contentStyle';
 
 export default class Content extends PureComponent {
   constructor(props) {
@@ -42,9 +48,9 @@ export default class Content extends PureComponent {
     ));
     const foldersList = folders.map(({ path, name }) => (
       <li>
-        <NavLink key={path} href={path}>
+        <StyledNavLink key={path} to={path}>
           {name}
-        </NavLink>
+        </StyledNavLink>
       </li>
     ));
 
@@ -53,7 +59,7 @@ export default class Content extends PureComponent {
         <Nav>
           <ul>
             <li>
-              <NavLink href="/">home</NavLink>
+              <StyledNavLink to="/">home</StyledNavLink>
             </li>
             {foldersList}
           </ul>

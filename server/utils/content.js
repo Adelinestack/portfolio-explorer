@@ -46,8 +46,7 @@ const getContentByPath = path => {
     }));
 
   const allImages = _.flattenDeep(getAllImages(folders, folderContent, path));
-
   return { folders, allImages };
 };
 
-module.exports = { getContentByPath };
+module.exports = { getContentByPath, getAllImages };

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Nav = styled.nav`
   display: flex;
@@ -14,7 +15,7 @@ export const Nav = styled.nav`
   }
 `;
 
-export const NavLink = styled.a`
+export const StyledNavLink = styled(Link)`
   color: #afa72e;
   font-size: 20px;
   text-decoration: none;

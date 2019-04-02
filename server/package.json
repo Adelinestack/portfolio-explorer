@@ -7,5 +7,9 @@
   },
   "scripts": {
     "start:dev": "nodemon index.js"
+  },
+  "devDependencies": {
+    "jest": "^24.5.0",
+    "mock-fs": "^4.8.0"
   }
 }
