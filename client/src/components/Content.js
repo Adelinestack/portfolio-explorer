@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom';
 import Element from './Element';
 import { getElement } from '../services/elements';
+import { Nav, NavLink, ImgBlock, Path, Images } from '../stylized/contentStyle';
 
 export default class Content extends PureComponent {
   constructor(props) {
@@ -41,25 +41,31 @@ export default class Content extends PureComponent {
       <Element path={path} name={name} key={`${name}${Date.now()}`} />
     ));
     const foldersList = folders.map(({ path, name }) => (
-      <p>
-        <Link key={path} to={path}>
+      <li>
+        <NavLink key={path} href={path}>
           {name}
-        </Link>
-      </p>
+        </NavLink>
+      </li>
     ));
 
     return (
       <div>
-        <p>
-          You are in : <span>{pathname}</span>
-        </p>
-        <nav>
-          <p>
-            <Link to="/">home</Link>
-          </p>
-          {foldersList}
-        </nav>
-        <div>{imagesToDisplay}</div>
+        <Nav>
+          <ul>
+            <li>
+              <NavLink href="/">home</NavLink>
+            </li>
+            {foldersList}
+          </ul>
+        </Nav>
+        <ImgBlock>
+          <Path>
+            <p>
+              You are in : <span>{pathname}</span>
+            </p>
+          </Path>
+          <Images>{imagesToDisplay}</Images>
+        </ImgBlock>
       </div>
     );
   }

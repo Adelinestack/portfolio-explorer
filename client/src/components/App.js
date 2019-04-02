@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Content from './Content';
 
+import { GlobalStyle, AppContainer, Header, Main } from '../stylized/appStyle';
+
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="App">
-          <header className="App-header">
+        <AppContainer className="App">
+          <GlobalStyle />
+          <Header>
             <h1>Portfolio Explorer</h1>
-          </header>
-          <main>
+          </Header>
+          <Main>
             <Route path="/" component={Content} />
-          </main>
-        </div>
+          </Main>
+        </AppContainer>
       </BrowserRouter>
     );
   }
