@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  node:
+    build:
+      context: .
+      dockerfile: ./node.Dockerfile
+    volumes:
+      - images:/app/server/img/
+  nginx:
+    build:
+      context: .
+      dockerfile: ./nginx.Dockerfile
+    ports:
+      - '4000:80'
+    volumes:
+      - images:/usr/share/nginx/img/
+volumes:
+  images:

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const getElementFromServer = async elementPath =>
-  await axios.get(`/getImages`, {
+  await axios.get(`/api/getImages`, {
     params: {
       elementPath,
     },

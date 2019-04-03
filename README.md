@@ -11,7 +11,7 @@ It goes through the folders tree and displays all the images.
 
 ### `Technologies used`
 
-ReactJS, ReactRouter, styled-components, NodeJS, Express Server
+ReactJS, ReactRouter, styled-components, NodeJS, Express Server, Docker-compose, Dockerfile (with node:11-alpine and nginx:1.15.9-alpine)
 
 ---
 
